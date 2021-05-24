@@ -3,6 +3,7 @@ package stuba.tomas.kostrna.oop.backend;
 import lombok.Getter;
 import lombok.Setter;
 import stuba.tomas.kostrna.oop.frontend.MainWindow;
+import stuba.tomas.kostrna.oop.frontend.afterlogin.UserInterface;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class Logger {
         this.database = new UsersDatabase();
     }
 
-    public String handleEvent(ActionEvent event) {
+    public boolean handleEvent(ActionEvent event) {
         if (event.getActionCommand().equals(this.window.getLogPanel().getLogInButton().getActionCommand())) {
             String username = this.window.getLogPanel().getUsernameInput().getText();
             String password = Arrays.toString(this.window.getLogPanel().getPasswordInput().getPassword());
@@ -30,12 +31,13 @@ public class Logger {
             for (Map.Entry<String, String> entry : logData.entrySet()) {
                 if (entry.getKey().equals(username) && Arrays.toString(entry.getValue().toCharArray()).equals(password)) {
                     clearInputs();
+                    new UserInterface(new User(entry));
                     return this.response.logInSuccessful();
                 }
             }
             return this.response.wrongLogInfo();
         }
-        return "";
+        return false;
     }
 
     private void clearInputs() {

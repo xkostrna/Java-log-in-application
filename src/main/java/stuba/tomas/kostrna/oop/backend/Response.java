@@ -1,10 +1,12 @@
 package stuba.tomas.kostrna.oop.backend;
 
 public class Response {
-    public String wrongLogInfo() {
-        return "Username or password is bad";
+    public boolean wrongLogInfo() {
+        System.out.println("Username or password is bad");
+        return false;
     }
-    public String logInSuccessful() {
-        return "login successful";
+    public boolean logInSuccessful() {
+        System.out.println("login successful");
+        return true;
     }
 }

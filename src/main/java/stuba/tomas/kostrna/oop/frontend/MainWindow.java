@@ -3,7 +3,6 @@ package stuba.tomas.kostrna.oop.frontend;
 import lombok.Getter;
 import lombok.Setter;
 import stuba.tomas.kostrna.oop.backend.Logger;
-import stuba.tomas.kostrna.oop.backend.UsersDatabase;
 
 import javax.swing.*;
 import java.awt.*;
