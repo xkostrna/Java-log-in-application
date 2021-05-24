@@ -6,18 +6,75 @@ import stuba.tomas.kostrna.oop.backend.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 
 @Getter
 @Setter
-public class UserInterface extends JFrame {
+public class UserInterface extends JFrame implements ActionListener {
+
     private User user;
+    private ChangePassword changePasswordButton;
+    private JTextField enterPasswordField;
+
+
     public UserInterface(User user) {
-        super("Greetings " + user.getUsername());
+        super(user.getUsername() + " interface :)");
+        this.user = user;
         initializeDefault();
     }
+
     private void initializeDefault() {
         this.setVisible(true);
         this.setFocusable(true);
-        this.setMinimumSize(new Dimension(300,100));
+        this.setMinimumSize(new Dimension(400,200));
+        this.setLayout(new FlowLayout());
+
+        this.add(new JLabel("new password: "));
+        this.enterPasswordField = new JTextField("Enter new password");
+        this.enterPasswordField.setMinimumSize(new Dimension(70,100));
+        this.add(this.enterPasswordField);
+
+        this.changePasswordButton = new ChangePassword();
+        this.changePasswordButton.addActionListener(this);
+        this.add(this.changePasswordButton);
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals(this.changePasswordButton.getActionCommand())) {
+            if (this.enterPasswordField.getText() != null) {
+                changeUserPassword();
+            }
+        }
+    }
+
+    private void changeUserPassword() {
+        String newPassword = this.enterPasswordField.getText();
+        try {
+            File file = new File("src\\main\\java\\stuba\\tomas\\kostrna\\oop\\backend\\logdata.txt");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuilder newContent = new StringBuilder();
+            String line = reader.readLine();
+            while (line != null) {
+                String[] userData = line.split(" ");
+                if (userData[0].equals(this.user.getUsername())) {
+                    if (userData[1].equals(this.user.getPassword())) {
+                        userData[1] = newPassword;
+                    }
+                }
+                newContent.append(userData[0]).append(" ").append(userData[1]).append(System.lineSeparator());
+                line = reader.readLine();
+            }
+            FileWriter writer = new FileWriter(file);
+            writer.write(newContent.toString());
+            reader.close();
+            writer.close();
+        }
+        catch (IOException exception) {
+            System.out.println("not found");
+        }
     }
 }

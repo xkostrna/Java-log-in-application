@@ -29,6 +29,8 @@ public class UsersDatabase {
             String[] parts = s.split(" ");
             this.logData.put(parts[username], parts[password]);
         }
+        bufferedReader.close();
+        reader.close();
     }
 
     private void addUserToDatabase(String name, String password) {
