@@ -3,6 +3,7 @@ package stuba.tomas.kostrna.oop.frontend;
 import lombok.Getter;
 import lombok.Setter;
 import stuba.tomas.kostrna.oop.backend.Logger;
+import stuba.tomas.kostrna.oop.backend.UsersDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,8 +24,12 @@ public class MainWindow extends JFrame implements ActionListener {
     public MainWindow() throws IOException {
         super("Tomas Kostrna Project");
         initializeMainWindow();
-        this.logger = new Logger(this);
         initializeLogPanel();
+        initializeVariables();
+    }
+
+    private void initializeVariables() throws IOException {
+        this.logger = new Logger(this);
     }
 
     private void initializeMainWindow() {
@@ -50,6 +55,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.logger.handleEvent(e);
+        System.out.println(logger.handleEvent(e));
     }
 }

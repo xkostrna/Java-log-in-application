@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Application {
     private MainWindow mainWindow;
 
-    public Application() throws IOException {
+    public Application() {
         try {
             this.mainWindow = new MainWindow();
         }
