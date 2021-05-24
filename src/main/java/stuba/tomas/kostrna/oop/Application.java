@@ -2,7 +2,7 @@ package stuba.tomas.kostrna.oop;
 
 import lombok.Getter;
 import lombok.Setter;
-import stuba.tomas.kostrna.oop.backend.UserLogManager;
+import stuba.tomas.kostrna.oop.backend.UsersDatabase;
 import stuba.tomas.kostrna.oop.frontend.MainWindow;
 
 import java.io.IOException;
@@ -11,17 +11,15 @@ import java.io.IOException;
 @Setter
 public class Application {
     private MainWindow mainWindow;
-    private UserLogManager userManager;
-    private ApplicationManager manager;
+    private UsersDatabase usersDatabase;
 
     public Application() throws IOException {
         this.mainWindow = new MainWindow();
         try {
-            this.userManager = new UserLogManager();
+            this.usersDatabase = new UsersDatabase();
         }
         catch (IOException e) {
             throw new IOException();
         }
-        this.manager = new ApplicationManager(this);
     }
 }
