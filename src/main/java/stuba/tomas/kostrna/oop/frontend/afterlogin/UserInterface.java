@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.Arrays;
 
 @Getter
 @Setter
@@ -16,8 +17,7 @@ public class UserInterface extends JFrame implements ActionListener {
 
     private User user;
     private ChangePassword changePasswordButton;
-    private JTextField enterPasswordField;
-
+    private JPasswordField enterPasswordField;
 
     public UserInterface(User user) {
         super(user.getUsername() + " interface :)");
@@ -28,11 +28,11 @@ public class UserInterface extends JFrame implements ActionListener {
     private void initializeDefault() {
         this.setVisible(true);
         this.setFocusable(true);
-        this.setMinimumSize(new Dimension(400,200));
-        this.setLayout(new FlowLayout());
+        this.setMinimumSize(new Dimension(500,75));
+        this.setLayout(new GridLayout(0,3));
 
-        this.add(new JLabel("new password: "));
-        this.enterPasswordField = new JTextField("Enter new password");
+        this.add(new JLabel("Enter new password: "));
+        this.enterPasswordField = new JPasswordField();
         this.enterPasswordField.setMinimumSize(new Dimension(70,100));
         this.add(this.enterPasswordField);
 
@@ -41,18 +41,19 @@ public class UserInterface extends JFrame implements ActionListener {
         this.add(this.changePasswordButton);
     }
 
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(this.changePasswordButton.getActionCommand())) {
-            if (this.enterPasswordField.getText() != null) {
+            if (this.enterPasswordField.getPassword() != null) {
                 changeUserPassword();
             }
         }
     }
 
     private void changeUserPassword() {
-        String newPassword = this.enterPasswordField.getText();
+        StringBuilder newPassword = new StringBuilder();
+        newPassword.append(this.enterPasswordField.getPassword());
+        this.enterPasswordField.setText("");
         try {
             File file = new File("src\\main\\java\\stuba\\tomas\\kostrna\\oop\\backend\\logdata.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -62,7 +63,7 @@ public class UserInterface extends JFrame implements ActionListener {
                 String[] userData = line.split(" ");
                 if (userData[0].equals(this.user.getUsername())) {
                     if (userData[1].equals(this.user.getPassword())) {
-                        userData[1] = newPassword;
+                        userData[1] = newPassword.toString();
                     }
                 }
                 newContent.append(userData[0]).append(" ").append(userData[1]).append(System.lineSeparator());
