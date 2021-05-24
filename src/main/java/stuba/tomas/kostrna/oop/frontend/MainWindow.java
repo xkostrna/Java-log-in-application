@@ -1,4 +1,4 @@
-package stuba.tomas.kostrna.oop.userview;
+package stuba.tomas.kostrna.oop.frontend;
 
 import lombok.Getter;
 import lombok.Setter;
