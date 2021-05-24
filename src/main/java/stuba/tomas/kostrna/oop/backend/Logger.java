@@ -2,7 +2,7 @@ package stuba.tomas.kostrna.oop.backend;
 
 import lombok.Getter;
 import lombok.Setter;
-import stuba.tomas.kostrna.oop.frontend.MainWindow;
+import stuba.tomas.kostrna.oop.frontend.homepage.MainWindow;
 import stuba.tomas.kostrna.oop.frontend.afterlogin.UserInterface;
 
 import java.awt.event.ActionEvent;

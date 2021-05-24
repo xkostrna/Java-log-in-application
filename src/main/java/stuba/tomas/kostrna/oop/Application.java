@@ -2,7 +2,7 @@ package stuba.tomas.kostrna.oop;
 
 import lombok.Getter;
 import lombok.Setter;
-import stuba.tomas.kostrna.oop.frontend.MainWindow;
+import stuba.tomas.kostrna.oop.frontend.homepage.MainWindow;
 
 import java.io.IOException;
 
