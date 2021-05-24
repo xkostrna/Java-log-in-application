@@ -12,6 +12,9 @@ public class MainWindow extends JFrame {
 
     private LogPanel logPanel;
 
+    private int DEFAULT_WIDTH = 325;
+    private int DEFAULT_HEIGHT = 400;
+
     public MainWindow() {
         super("Tomas Kostrna Project");
         initializeMainWindow();
@@ -21,8 +24,8 @@ public class MainWindow extends JFrame {
     private void initializeMainWindow() {
         this.setVisible(true);
         this.setFocusable(true);
-        this.setPreferredSize(new Dimension(300,400));
-        this.setMinimumSize(new Dimension(300,400));
+        this.setPreferredSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
+        this.setMinimumSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGHT));
         this.setLayout(new FlowLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

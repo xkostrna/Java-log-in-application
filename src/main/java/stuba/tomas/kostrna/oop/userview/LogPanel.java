@@ -15,13 +15,16 @@ public class LogPanel extends JPanel {
     private LogInButton logInButton;
     private ExitButton exitButton;
 
+    private int DEFAULT_WIDTH = 250;
+    private int DEFAULT_HEIGHT = 70;
+
     public LogPanel() {
         super();
         initializeDefaultSettings();
     }
 
     private void initializeDefaultSettings() {
-        this.setPreferredSize(new Dimension(250, 70));
+        this.setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
         this.setLayout(new GridLayout(3,2));
 
         this.add(new JLabel("username: "));
