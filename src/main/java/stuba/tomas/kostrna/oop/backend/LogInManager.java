@@ -11,12 +11,12 @@ import java.util.Map;
 
 @Getter
 @Setter
-public class LoginManager {
+public class LogInManager {
     private UsersDatabase database;
     private MainWindow window;
     private Response response;
 
-    public LoginManager(MainWindow window) throws IOException {
+    public LogInManager(MainWindow window) throws IOException {
         this.window = window;
         this.response = new Response();
         this.database = new UsersDatabase();

@@ -15,8 +15,7 @@ import java.awt.event.ActionListener;
 public class UserInterface extends JFrame implements ActionListener {
 
     private User user;
-    private ChangePasswordButton changePasswordButton;
-    private JPasswordField enterPasswordField;
+    private InterfacePanel interfacePanel;
     private UserInterfaceManager manager;
 
     public UserInterface(User user) {
@@ -29,26 +28,20 @@ public class UserInterface extends JFrame implements ActionListener {
     private void initializeDefaultFrontendSettings() {
         this.setVisible(true);
         this.setFocusable(true);
-        this.setMinimumSize(new Dimension(500,75));
-        this.setLayout(new GridLayout(0,3));
+        this.setMinimumSize(new Dimension(500,100));
+        this.setLayout(new FlowLayout());
 
-        this.add(new JLabel("Enter new password: "));
-        this.enterPasswordField = new JPasswordField();
-        this.enterPasswordField.setMinimumSize(new Dimension(70,100));
-        this.add(this.enterPasswordField);
-
-        this.changePasswordButton = new ChangePasswordButton();
-        this.changePasswordButton.addActionListener(this);
-        this.add(this.changePasswordButton);
+        this.interfacePanel = new InterfacePanel();
+        this.getInterfacePanel().getChangePasswordButton().addActionListener(this);
+        this.add(interfacePanel);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals(this.changePasswordButton.getActionCommand())) {
-            if (this.enterPasswordField.getPassword() != null) {
+        if (e.getActionCommand().equals(this.interfacePanel.getChangePasswordButton().getActionCommand())) {
+            if (this.interfacePanel.getEnterPasswordField().getPassword() != null) {
                 this.manager.handleChangePasswordEvent();
             }
         }
     }
-
 }

@@ -12,5 +12,4 @@ public class PasswordInput extends JPasswordField {
     public PasswordInput() {
         super();
     }
-
 }

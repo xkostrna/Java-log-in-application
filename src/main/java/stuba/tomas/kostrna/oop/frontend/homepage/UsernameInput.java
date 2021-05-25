@@ -12,5 +12,4 @@ public class UsernameInput extends JTextField {
     public UsernameInput() {
         super();
     }
-
 }

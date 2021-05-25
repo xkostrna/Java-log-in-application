@@ -2,7 +2,7 @@ package stuba.tomas.kostrna.oop.frontend.homepage;
 
 import lombok.Getter;
 import lombok.Setter;
-import stuba.tomas.kostrna.oop.backend.LoginManager;
+import stuba.tomas.kostrna.oop.backend.LogInManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MainWindow extends JFrame implements ActionListener {
 
     private LogPanel logPanel;
-    private LoginManager logger;
+    private LogInManager loginManager;
 
     private int DEFAULT_WIDTH = 325;
     private int DEFAULT_HEIGHT = 400;
@@ -49,11 +49,11 @@ public class MainWindow extends JFrame implements ActionListener {
     }
 
     private void initializeLogger() throws IOException {
-        this.logger = new LoginManager(this);
+        this.loginManager = new LogInManager(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(logger.handleLoginEvent(e));
+        System.out.println(loginManager.handleLoginEvent(e));
     }
 }

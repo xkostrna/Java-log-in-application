@@ -21,8 +21,8 @@ public class UserInterfaceManager {
 
     public void handleChangePasswordEvent() {
         StringBuilder newPassword = new StringBuilder();
-        newPassword.append(this.getUserInterface().getEnterPasswordField().getPassword());
-        this.getUserInterface().getEnterPasswordField().setText("");
+        newPassword.append(this.getUserInterface().getInterfacePanel().getEnterPasswordField().getPassword());
+        this.getUserInterface().getInterfacePanel().getEnterPasswordField().setText("");
         try {
             File file = new File("src\\main\\java\\stuba\\tomas\\kostrna\\oop\\backend\\logdata.txt");
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -47,5 +47,4 @@ public class UserInterfaceManager {
             System.out.println("not found");
         }
     }
-
 }

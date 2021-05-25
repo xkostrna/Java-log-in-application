@@ -9,6 +9,7 @@ import java.awt.*;
 @Getter
 @Setter
 public class LogPanel extends JPanel {
+
     private UsernameInput usernameInput;
     private PasswordInput passwordInput;
 
