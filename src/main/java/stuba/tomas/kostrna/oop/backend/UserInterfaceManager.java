@@ -10,6 +10,10 @@ import java.io.*;
 @Setter
 public class UserInterfaceManager {
     private UserInterface userInterface;
+    private UsersDatabase database;
+
+    private static int username = 0;
+    private static int password = 1;
 
     public UserInterfaceManager(UserInterface userInterface) {
         this.userInterface = userInterface;
@@ -26,12 +30,12 @@ public class UserInterfaceManager {
             String line = reader.readLine();
             while (line != null) {
                 String[] userData = line.split(" ");
-                if (userData[0].equals(this.getUserInterface().getUser().getUsername())) {
-                    if (userData[1].equals(this.getUserInterface().getUser().getPassword())) {
-                        userData[1] = newPassword.toString();
+                if (userData[username].equals(this.getUserInterface().getUser().getUsername())) {
+                    if (userData[password].equals(this.getUserInterface().getUser().getPassword())) {
+                        userData[password] = newPassword.toString();
                     }
                 }
-                newContent.append(userData[0]).append(" ").append(userData[1]).append(System.lineSeparator());
+                newContent.append(userData[username]).append(" ").append(userData[password]).append(System.lineSeparator());
                 line = reader.readLine();
             }
             FileWriter writer = new FileWriter(file);
