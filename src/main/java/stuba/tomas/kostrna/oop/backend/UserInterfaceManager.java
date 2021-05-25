@@ -48,6 +48,7 @@ public class UserInterfaceManager {
         catch (IOException exception) {
             System.out.println("not found");
         }
+        this.userInterface.getUser().setPassword(newPassword.toString());
         changeUserPasswordInDatabase(newPassword.toString());
     }
 
