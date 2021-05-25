@@ -15,8 +15,8 @@ public class LogPanel extends JPanel {
     private LogInButton logInButton;
     private ExitButton exitButton;
 
-    private int DEFAULT_WIDTH = 250;
-    private int DEFAULT_HEIGHT = 70;
+    private static int DEFAULT_WIDTH = 250;
+    private static int DEFAULT_HEIGHT = 70;
 
     public LogPanel() {
         super();

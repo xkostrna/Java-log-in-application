@@ -2,7 +2,7 @@ package stuba.tomas.kostrna.oop.frontend.homepage;
 
 import lombok.Getter;
 import lombok.Setter;
-import stuba.tomas.kostrna.oop.backend.Logger;
+import stuba.tomas.kostrna.oop.backend.LoginManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ import java.io.IOException;
 public class MainWindow extends JFrame implements ActionListener {
 
     private LogPanel logPanel;
-    private Logger logger;
+    private LoginManager logger;
 
     private int DEFAULT_WIDTH = 325;
     private int DEFAULT_HEIGHT = 400;
@@ -24,11 +24,7 @@ public class MainWindow extends JFrame implements ActionListener {
         super("Tomas Kostrna Project");
         initializeMainWindow();
         initializeLogPanel();
-        initializeVariables();
-    }
-
-    private void initializeVariables() throws IOException {
-        this.logger = new Logger(this);
+        initializeLogger();
     }
 
     private void initializeMainWindow() {
@@ -40,11 +36,6 @@ public class MainWindow extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    private void reDrawMainWindow() {
-        this.revalidate();
-        this.repaint();
-    }
-
     private void initializeLogPanel() {
         this.logPanel = new LogPanel();
         this.logPanel.getLogInButton().addActionListener(this);
@@ -52,8 +43,17 @@ public class MainWindow extends JFrame implements ActionListener {
         reDrawMainWindow();
     }
 
+    private void reDrawMainWindow() {
+        this.revalidate();
+        this.repaint();
+    }
+
+    private void initializeLogger() throws IOException {
+        this.logger = new LoginManager(this);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(logger.handleEvent(e));
+        System.out.println(logger.handleLoginEvent(e));
     }
 }

@@ -7,8 +7,8 @@ import javax.swing.*;
 
 @Getter
 @Setter
-public class ChangePassword extends JButton {
-    public ChangePassword() {
+public class ChangePasswordButton extends JButton {
+    public ChangePasswordButton() {
         super("Change password");
     }
 }

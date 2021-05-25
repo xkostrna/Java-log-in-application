@@ -7,29 +7,29 @@ import stuba.tomas.kostrna.oop.frontend.afterlogin.UserInterface;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
 @Getter
 @Setter
-public class Logger {
+public class LoginManager {
     private UsersDatabase database;
     private MainWindow window;
     private Response response;
 
-    public Logger(MainWindow window) throws IOException {
+    public LoginManager(MainWindow window) throws IOException {
         this.window = window;
         this.response = new Response();
         this.database = new UsersDatabase();
     }
 
-    public boolean handleEvent(ActionEvent event) {
+    public boolean handleLoginEvent(ActionEvent event) {
         if (event.getActionCommand().equals(this.window.getLogPanel().getLogInButton().getActionCommand())) {
             String username = this.window.getLogPanel().getUsernameInput().getText();
-            String password = Arrays.toString(this.window.getLogPanel().getPasswordInput().getPassword());
+            StringBuilder password = new StringBuilder();
+            password.append(this.window.getLogPanel().getPasswordInput().getPassword());
             Map<String, String> logData = this.database.getLogData();
             for (Map.Entry<String, String> entry : logData.entrySet()) {
-                if (entry.getKey().equals(username) && Arrays.toString(entry.getValue().toCharArray()).equals(password)) {
+                if (entry.getKey().equals(username) && entry.getValue().equals(password.toString())) {
                     clearInputs();
                     new UserInterface(new User(entry));
                     return this.response.logInSuccessful();
