@@ -31,7 +31,7 @@ public class LogInManager {
             for (Map.Entry<String, String> entry : logData.entrySet()) {
                 if (entry.getKey().equals(username) && entry.getValue().equals(password.toString())) {
                     clearInputs();
-                    new UserInterface(new User(entry));
+                    new UserInterface(new User(entry), this.database);
                     return this.response.logInSuccessful();
                 }
             }

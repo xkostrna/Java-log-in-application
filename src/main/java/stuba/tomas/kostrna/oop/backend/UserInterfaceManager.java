@@ -5,6 +5,7 @@ import lombok.Setter;
 import stuba.tomas.kostrna.oop.frontend.afterlogin.UserInterface;
 
 import java.io.*;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -15,11 +16,12 @@ public class UserInterfaceManager {
     private static int username = 0;
     private static int password = 1;
 
-    public UserInterfaceManager(UserInterface userInterface) {
+    public UserInterfaceManager(UserInterface userInterface, UsersDatabase database) {
         this.userInterface = userInterface;
+        this.database = database;
     }
 
-    public void handleChangePasswordEvent() {
+    public void changeUserPasswordInTextFile() {
         StringBuilder newPassword = new StringBuilder();
         newPassword.append(this.getUserInterface().getInterfacePanel().getEnterPasswordField().getPassword());
         this.getUserInterface().getInterfacePanel().getEnterPasswordField().setText("");
@@ -45,6 +47,17 @@ public class UserInterfaceManager {
         }
         catch (IOException exception) {
             System.out.println("not found");
+        }
+        changeUserPasswordInDatabase(newPassword.toString());
+    }
+
+    private void changeUserPasswordInDatabase(String newPassword) {
+        User user = this.userInterface.getUser();
+        Map<String, String> data = this.database.getLogData();
+        for (Map.Entry<String, String> entry : data.entrySet()) {
+            if (entry.getKey().equals(user.getUsername())) {
+                entry.setValue(newPassword);
+            }
         }
     }
 }

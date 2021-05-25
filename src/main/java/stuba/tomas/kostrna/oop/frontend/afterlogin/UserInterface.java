@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import stuba.tomas.kostrna.oop.backend.User;
 import stuba.tomas.kostrna.oop.backend.UserInterfaceManager;
+import stuba.tomas.kostrna.oop.backend.UsersDatabase;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,10 +19,10 @@ public class UserInterface extends JFrame implements ActionListener {
     private InterfacePanel interfacePanel;
     private UserInterfaceManager manager;
 
-    public UserInterface(User user) {
+    public UserInterface(User user, UsersDatabase database) {
         super(user.getUsername() + " interface :)");
         this.user = user;
-        this.manager = new UserInterfaceManager(this);
+        this.manager = new UserInterfaceManager(this, database);
         initializeDefaultFrontendSettings();
     }
 
@@ -40,7 +41,7 @@ public class UserInterface extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals(this.interfacePanel.getChangePasswordButton().getActionCommand())) {
             if (this.interfacePanel.getEnterPasswordField().getPassword() != null) {
-                this.manager.handleChangePasswordEvent();
+                this.manager.changeUserPasswordInTextFile();
             }
         }
     }
